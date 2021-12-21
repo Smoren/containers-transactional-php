@@ -161,6 +161,20 @@ Map-like data structure with transactional interface.
 
 Classic implementation of linked list data structure wrapped with transactional interface.
 
+#### TMappedLinkedList
+
+```\Smoren\StructsTransactional\structs\TMappedLinkedList```
+
+LinkedList with mapping by id and with transactional interface.
+
 #### TSortedLinkedList
 
-LinkedList with presort
+```\Smoren\StructsTransactional\structs\TSortedLinkedList```
+
+LinkedList with presort and transactional interface.
+
+#### TSortedMappedLinkedList
+
+```\Smoren\StructsTransactional\structs\TSortedMappedLinkedList```
+
+LinkedList with presort, mapping and transactional interface.
