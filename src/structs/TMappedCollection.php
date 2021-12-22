@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Smoren\StructsTransactional\structs;
 
 
@@ -9,6 +8,8 @@ use Smoren\StructsTransactional\base\TransactionWrapper;
 
 /**
  * Class TMappedCollection
+ * Wraps MappedCollection
+ * @see \Smoren\Structs\structs\MappedCollection
  */
 class TMappedCollection extends TransactionWrapper
 {

@@ -13,22 +13,22 @@ use Smoren\StructsTransactional\exceptions\WrapperException;
 class TransactionWrapper
 {
     /**
-     * @var mixed
+     * @var mixed wrapped object
      */
     protected $wrapped;
     /**
-     * @var mixed|null
+     * @var mixed|null temporary state of transaction
      */
     protected $temporary;
     /**
-     * @var Validator|null $validator
+     * @var Validator|null $validator validator object
      */
     protected ?Validator $validator;
 
     /**
      * TransactionWrapper constructor.
-     * @param null $object
-     * @param Validator|null $validator
+     * @param null $object object to wrap
+     * @param Validator|null $validator validation object
      * @throws WrapperException
      */
     public function __construct($object = null, ?Validator $validator = null)
@@ -43,7 +43,8 @@ class TransactionWrapper
     }
 
     /**
-     * @param callable $interactor
+     * Method from interacting with temporary transaction state
+     * @param callable $interactor callback for interaction
      * @return $this
      */
     public function interact(callable $interactor): self
@@ -54,6 +55,7 @@ class TransactionWrapper
     }
 
     /**
+     * Validates and commits transaction if validation success otherwise rollbacks it
      * @throws ValidationException
      */
     public function apply(): self
@@ -69,6 +71,7 @@ class TransactionWrapper
     }
 
     /**
+     * Validates transaction temporary state
      * @return $this
      * @throws ValidationException
      */
@@ -85,6 +88,7 @@ class TransactionWrapper
     }
 
     /**
+     * Commits transaction
      * @return $this
      */
     public function commit(): self
@@ -96,6 +100,7 @@ class TransactionWrapper
     }
 
     /**
+     * Rollbacks transaction
      * @return $this
      */
     public function rollback(): self
@@ -106,6 +111,7 @@ class TransactionWrapper
     }
 
     /**
+     * Returns wrapped object
      * @return mixed|null
      */
     public function getWrapped()
@@ -114,7 +120,8 @@ class TransactionWrapper
     }
 
     /**
-     * @param Validator $validator
+     * Sets validator object
+     * @param Validator $validator validator object
      * @return $this
      */
     public function setValidator(Validator $validator): self
@@ -124,6 +131,7 @@ class TransactionWrapper
     }
 
     /**
+     * Starts transaction if not already started
      * @return $this
      */
     protected function start(): self
@@ -140,6 +148,7 @@ class TransactionWrapper
     }
 
     /**
+     * Returns default validator object
      * @return Validator|null
      */
     protected function getDefaultValidator(): ?Validator
@@ -148,6 +157,7 @@ class TransactionWrapper
     }
 
     /**
+     * Return default instance of wrapped object
      * @return mixed|null
      */
     protected function getDefaultWrapped()
@@ -156,6 +166,7 @@ class TransactionWrapper
     }
 
     /**
+     * Returns string with wrapped object classname
      * @return string|null
      */
     protected function getWrappedType(): ?string
@@ -164,7 +175,8 @@ class TransactionWrapper
     }
 
     /**
-     * @param $object
+     * Validates wrapped object type
+     * @param mixed $object wrapped object
      * @return $this
      * @throws WrapperException
      */

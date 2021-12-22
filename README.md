@@ -88,7 +88,7 @@ class TYourClass extends TransactionWrapper
  */
 class MyValidationRule implements ValidationRuleInterface
 {
-    protected array $error = [];
+    protected array $errors = [];
     
     /**
      * @inheritDoc
@@ -102,9 +102,9 @@ class MyValidationRule implements ValidationRuleInterface
     /**
      * @inheritDoc
      */
-    public function getError()
+    public function getErrors()
     {
-        return $this->error;
+        return $this->errors;
     }
 }
 ```

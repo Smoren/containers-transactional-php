@@ -7,26 +7,32 @@ namespace Smoren\StructsTransactional\tests\unit\utility;
 use Smoren\Structs\structs\MappedCollection;
 use Smoren\StructsTransactional\interfaces\ValidationRuleInterface;
 
+/**
+ * Class IdMappingValidationRule
+ */
 class IdMappingValidationRule implements ValidationRuleInterface
 {
-    protected array $error = [
+    /**
+     * @var array[] errors
+     */
+    protected array $errors = [
         'not_specified' => [],
         'not_match' => [],
     ];
 
     /**
+     * @inheritDoc
      * @param MappedCollection $data
-     * @return bool
      */
     public function validate($data): bool
     {
         $errorCount = 0;
         foreach($data as $id => $item) {
             if(!isset($item['id'])) {
-                $this->error['not_specified'][] = $id;
+                $this->errors['not_specified'][] = $id;
                 ++$errorCount;
             } elseif((string)$item['id'] !== (string)$id) {
-                $this->error['not_match'][] = $id;
+                $this->errors['not_match'][] = $id;
                 ++$errorCount;
             }
         }
@@ -38,8 +44,12 @@ class IdMappingValidationRule implements ValidationRuleInterface
         return true;
     }
 
-    public function getError()
+    /**
+     * @inheritDoc
+     * @return array[]
+     */
+    public function getErrors()
     {
-        return $this->error;
+        return $this->errors;
     }
 }

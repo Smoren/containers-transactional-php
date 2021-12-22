@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Smoren\StructsTransactional\structs;
 
 
@@ -8,6 +7,7 @@ use Smoren\StructsTransactional\base\TransactionWrapper;
 
 /**
  * Class TArray
+ * Wraps php array
  */
 class TArray extends TransactionWrapper
 {

@@ -9,14 +9,17 @@ use Smoren\StructsTransactional\interfaces\ValidationRuleInterface;
 
 class PositiveNumberValidationRule implements ValidationRuleInterface
 {
+    /**
+     * @var array[] errors
+     */
     protected array $error = [
         'zero' => [],
         'negative' => [],
     ];
 
     /**
+     * @inheritDoc
      * @param MappedCollection $data
-     * @return bool
      */
     public function validate($data): bool
     {
@@ -38,7 +41,11 @@ class PositiveNumberValidationRule implements ValidationRuleInterface
         return true;
     }
 
-    public function getError()
+    /**
+     * @inheritDoc
+     * @return array[]
+     */
+    public function getErrors()
     {
         return $this->error;
     }

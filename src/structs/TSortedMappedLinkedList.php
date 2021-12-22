@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Smoren\StructsTransactional\structs;
 
 
@@ -11,6 +10,8 @@ use Smoren\StructsTransactional\base\TransactionWrapper;
 
 /**
  * Class TSortedMappedLinkedList
+ * Wraps SortedMappedLinkedList
+ * @see \Smoren\Structs\structs\SortedMappedLinkedList
  */
 class TSortedMappedLinkedList extends TransactionWrapper
 {
