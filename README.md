@@ -145,7 +145,7 @@ try {
 
 #### TArray
 
-Wraps PHP array with transactional interface
+Wraps PHP array with transactional interface.
 
 ```php
 use Smoren\StructsTransactional\structs\TArray;
@@ -229,6 +229,8 @@ try {
 
 #### TMappedLinkedList
 
+LinkedList with mapping by id and with transactional interface.
+
 ```php
 use Smoren\StructsTransactional\structs\TMappedLinkedList;
 use Smoren\StructsTransactional\exceptions\ValidationException;
@@ -254,9 +256,9 @@ try {
 }
 ```
 
-LinkedList with mapping by id and with transactional interface.
-
 #### TSortedLinkedList
+
+LinkedList with presort and transactional interface.
 
 ```php
 use Smoren\StructsTransactional\structs\TSortedLinkedList;
@@ -298,8 +300,6 @@ try {
     // if validation failed
 }
 ```
-
-LinkedList with presort and transactional interface.
 
 #### TSortedMappedLinkedList
 
