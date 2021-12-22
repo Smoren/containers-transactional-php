@@ -272,6 +272,15 @@ class MainTest extends Unit
         }
     }
 
+    /**
+     * @throws LinkedListException
+     * @throws LogicException
+     * @throws MappedCollectionException
+     * @throws MappedLinkedListException
+     * @throws ValidationException
+     * @throws WrapperException
+     *
+     */
     public function testTransactionalMappedLinkedList()
     {
         $ll = new TMappedLinkedList(
