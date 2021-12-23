@@ -6,6 +6,7 @@ namespace Smoren\Containers\Transactional\Base;
 
 use Smoren\Containers\Transactional\Exceptions\ValidationException;
 use Smoren\Containers\Transactional\Exceptions\WrapperException;
+use Smoren\Containers\Transactional\Interfaces\Restorable;
 
 /**
  * Class TransactionWrapper
@@ -94,7 +95,12 @@ class TransactionWrapper
     public function commit(): self
     {
         $this->start();
-        $this->wrapped = $this->temporary;
+
+        if($this->wrapped instanceof Restorable) {
+            $this->wrapped->restoreState($this->temporary);
+        } else {
+            $this->wrapped = $this->temporary;
+        }
         $this->temporary = null;
         return $this;
     }
