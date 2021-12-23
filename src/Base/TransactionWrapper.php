@@ -24,9 +24,9 @@ class TransactionWrapper
      */
     protected $temporary;
     /**
-     * @var Validator|null $validator validator object
+     * @var Validator $validator validator object
      */
-    protected ?Validator $validator;
+    protected Validator $validator;
 
     /**
      * TransactionWrapper constructor.
@@ -165,6 +165,15 @@ class TransactionWrapper
     }
 
     /**
+     * Returns Validator object
+     * @return Validator
+     */
+    public function getValidator(): Validator
+    {
+        return $this->validator;
+    }
+
+    /**
      * Starts transaction if not already started
      * @return $this
      */
@@ -183,11 +192,11 @@ class TransactionWrapper
 
     /**
      * Returns default validator object
-     * @return Validator|null
+     * @return Validator
      */
-    protected function getDefaultValidator(): ?Validator
+    protected function getDefaultValidator(): Validator
     {
-        return null;
+        return new Validator();
     }
 
     /**
