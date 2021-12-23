@@ -258,17 +258,17 @@ class TransactionWrapper
     {
         $errors = [];
 
-        if($this->wrapped instanceof RecursiveTransactional) {
-            foreach($this->wrapped->getTransactionalFields() as $propName => $propValue) {
+        if($this->temporary instanceof RecursiveTransactional) {
+            foreach($this->temporary->getTransactionalFields() as $propName => $propValue) {
                 try {
                     $callback($propValue);
                 } catch(ValidationException $e) {
                     $errors[$propName] = $e->getErrors();
                 }
             }
-        } elseif($this->wrapped instanceof Traversable) {
+        } elseif($this->temporary instanceof Traversable) {
             $i = 0;
-            foreach($this->wrapped as $id => $propValue) {
+            foreach($this->temporary as $id => $propValue) {
                 if(!($propValue instanceof TransactionWrapper)) {
                     continue;
                 }
