@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Smoren\StructsTransactional\Base;
+namespace Smoren\Containers\Transactional\Base;
 
 
-use Smoren\StructsTransactional\Exceptions\ValidationException;
-use Smoren\StructsTransactional\Exceptions\WrapperException;
+use Smoren\Containers\Transactional\Exceptions\ValidationException;
+use Smoren\Containers\Transactional\Exceptions\WrapperException;
 
 /**
  * Class TransactionWrapper

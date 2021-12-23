@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Smoren\StructsTransactional\Tests\Unit\Utility;
+namespace Smoren\Containers\Transactional\Tests\Unit\Utility;
 
 
-use Smoren\Structs\Structs\SortedLinkedList;
+use Smoren\Containers\Structs\SortedLinkedList;
 
 /**
  * Class IntegerSortedLinkedList

@@ -21,9 +21,9 @@ composer install
 #### Class definitions
 
 ```php
-use Smoren\StructsTransactional\Base\TransactionWrapper;
-use Smoren\StructsTransactional\Base\Validator;
-use Smoren\StructsTransactional\Interfaces\ValidationRuleInterface;
+use Smoren\Containers\Transactional\Base\TransactionWrapper;
+use Smoren\Containers\Transactional\Base\Validator;
+use Smoren\Containers\Transactional\Interfaces\ValidationRuleInterface;
 
 /**
  * Your class that you want to wrap with transactional interface
@@ -38,7 +38,7 @@ class YourClass {
 }
 
 /**
- * @see Smoren\StructsTransactional\Structs\TLinkedList
+ * @see Smoren\Containers\Transactional\Structs\TLinkedList
  */
 class TYourClass extends TransactionWrapper
 {
@@ -84,7 +84,7 @@ class TYourClass extends TransactionWrapper
 
 /**
  * This declaration is not necessary if you are not going to use validation
- * @see Smoren\StructsTransactional\Tests\Unit\Utility\PositiveNumberValidationRule
+ * @see Smoren\Containers\Transactional\Tests\Unit\Utility\PositiveNumberValidationRule
  */
 class MyValidationRule implements ValidationRuleInterface
 {
@@ -112,7 +112,7 @@ class MyValidationRule implements ValidationRuleInterface
 #### Client code
 
 ```php
-use Smoren\StructsTransactional\Exceptions\ValidationException;
+use Smoren\Containers\Transactional\Exceptions\ValidationException;
 
 $yourObject = new YourClass();
 $tWrapper = new TYourClass($yourObject);
@@ -148,8 +148,8 @@ try {
 Wraps PHP array with transactional interface.
 
 ```php
-use Smoren\StructsTransactional\Structs\TArray;
-use Smoren\StructsTransactional\Exceptions\ValidationException;
+use Smoren\Containers\Transactional\Structs\TArray;
+use Smoren\Containers\Transactional\Exceptions\ValidationException;
 
 $ta = new TArray([1, 2, 3]);
 print_r($ta->getWrapped()); // output: [1, 2, 3]
@@ -177,9 +177,9 @@ Classic implementation of linked list data structure wrapped with transactional 
 Wraps [LinkedList](https://github.com/Smoren/structs-php#linkedlist) container.
 
 ```php
-use Smoren\StructsTransactional\Structs\TLinkedList;
-use Smoren\StructsTransactional\Exceptions\ValidationException;
-use Smoren\Structs\Structs\LinkedList;
+use Smoren\Containers\Transactional\Structs\TLinkedList;
+use Smoren\Containers\Transactional\Exceptions\ValidationException;
+use Smoren\Containers\Structs\LinkedList;
 
 $tll = new TLinkedList([1, 2, 3]);
 print_r($tll->getWrapped()->toArray()); // output: [1, 2, 3]
@@ -205,9 +205,9 @@ Map-like data structure with transactional interface.
 Wraps [MappedCollection](https://github.com/Smoren/structs-php#mappedcollection) container.
 
 ```php
-use Smoren\StructsTransactional\Structs\TMappedCollection;
-use Smoren\StructsTransactional\Exceptions\ValidationException;
-use Smoren\Structs\Structs\MappedCollection;
+use Smoren\Containers\Transactional\Structs\TMappedCollection;
+use Smoren\Containers\Transactional\Exceptions\ValidationException;
+use Smoren\Containers\Structs\MappedCollection;
 
 $tmc = new TMappedCollection([
     '0' => ['id' => 0],
@@ -238,9 +238,9 @@ LinkedList with mapping by id and with transactional interface.
 Wraps [MappedLinkedList](https://github.com/Smoren/structs-php#mappedlinkedlist) container.
 
 ```php
-use Smoren\StructsTransactional\Structs\TMappedLinkedList;
-use Smoren\StructsTransactional\Exceptions\ValidationException;
-use Smoren\Structs\Structs\MappedLinkedList;
+use Smoren\Containers\Transactional\Structs\TMappedLinkedList;
+use Smoren\Containers\Transactional\Exceptions\ValidationException;
+use Smoren\Containers\Structs\MappedLinkedList;
 
 $tmll = new TMappedLinkedList(
     new MappedLinkedList([1 => 11])
@@ -269,9 +269,9 @@ LinkedList with presort and transactional interface.
 Wraps [SortedLinkedList](https://github.com/Smoren/structs-php#sortedlinkedlist) container.
 
 ```php
-use Smoren\StructsTransactional\Structs\TSortedLinkedList;
-use Smoren\StructsTransactional\Exceptions\ValidationException;
-use Smoren\Structs\Structs\SortedLinkedList;
+use Smoren\Containers\Transactional\Structs\TSortedLinkedList;
+use Smoren\Containers\Transactional\Exceptions\ValidationException;
+use Smoren\Containers\Structs\SortedLinkedList;
 
 /**
  * Class IntegerSortedLinkedList
@@ -316,9 +316,9 @@ LinkedList with presort, mapping and transactional interface.
 Wraps [SortedMappedLinkedList](https://github.com/Smoren/structs-php#sortedmappedlinkedlist) container.
 
 ```php
-use Smoren\StructsTransactional\Structs\TSortedMappedLinkedList;
-use Smoren\StructsTransactional\Exceptions\ValidationException;
-use Smoren\Structs\Structs\SortedMappedLinkedList;
+use Smoren\Containers\Transactional\Structs\TSortedMappedLinkedList;
+use Smoren\Containers\Transactional\Exceptions\ValidationException;
+use Smoren\Containers\Structs\SortedMappedLinkedList;
 
 $tsmll = new TSortedMappedLinkedList(
     new SortedMappedLinkedList([2 => -2, 1 => -1, 4 => -4])

@@ -1,35 +1,35 @@
 <?php
 
 
-namespace Smoren\StructsTransactional\Tests\Unit;
+namespace Smoren\Containers\Transactional\Tests\Unit;
 
 use Codeception\Lib\Console\Output;
 use Codeception\Test\Unit;
 use Exception;
 use Smoren\ExtendedExceptions\LogicException;
-use Smoren\Structs\Exceptions\LinkedListException;
-use Smoren\Structs\Exceptions\MappedCollectionException;
-use Smoren\Structs\Exceptions\MappedLinkedListException;
-use Smoren\Structs\Structs\LinkedList;
-use Smoren\Structs\Structs\LinkedListItem;
-use Smoren\Structs\Structs\MappedCollection;
-use Smoren\Structs\Structs\MappedLinkedList;
-use Smoren\Structs\Structs\SortedLinkedList;
-use Smoren\Structs\Structs\SortedMappedLinkedList;
-use Smoren\StructsTransactional\Base\Validator;
-use Smoren\StructsTransactional\Exceptions\ValidationException;
-use Smoren\StructsTransactional\Exceptions\WrapperException;
-use Smoren\StructsTransactional\Structs\TArray;
-use Smoren\StructsTransactional\Structs\TLinkedList;
-use Smoren\StructsTransactional\Structs\TMappedCollection;
-use Smoren\StructsTransactional\Structs\TMappedLinkedList;
-use Smoren\StructsTransactional\Structs\TSortedLinkedList;
-use Smoren\StructsTransactional\Structs\TSortedMappedLinkedList;
-use Smoren\StructsTransactional\Tests\Unit\Utility\ArraySortedMappedLinkedList;
-use Smoren\StructsTransactional\Tests\Unit\Utility\IdIssetValidationRule;
-use Smoren\StructsTransactional\Tests\Unit\Utility\IdMappingValidationRule;
-use Smoren\StructsTransactional\Tests\Unit\Utility\IntegerSortedLinkedList;
-use Smoren\StructsTransactional\Tests\Unit\Utility\PositiveNumberValidationRule;
+use Smoren\Containers\Exceptions\LinkedListException;
+use Smoren\Containers\Exceptions\MappedCollectionException;
+use Smoren\Containers\Exceptions\MappedLinkedListException;
+use Smoren\Containers\Structs\LinkedList;
+use Smoren\Containers\Structs\LinkedListItem;
+use Smoren\Containers\Structs\MappedCollection;
+use Smoren\Containers\Structs\MappedLinkedList;
+use Smoren\Containers\Structs\SortedLinkedList;
+use Smoren\Containers\Structs\SortedMappedLinkedList;
+use Smoren\Containers\Transactional\Base\Validator;
+use Smoren\Containers\Transactional\Exceptions\ValidationException;
+use Smoren\Containers\Transactional\Exceptions\WrapperException;
+use Smoren\Containers\Transactional\Structs\TArray;
+use Smoren\Containers\Transactional\Structs\TLinkedList;
+use Smoren\Containers\Transactional\Structs\TMappedCollection;
+use Smoren\Containers\Transactional\Structs\TMappedLinkedList;
+use Smoren\Containers\Transactional\Structs\TSortedLinkedList;
+use Smoren\Containers\Transactional\Structs\TSortedMappedLinkedList;
+use Smoren\Containers\Transactional\Tests\Unit\Utility\ArraySortedMappedLinkedList;
+use Smoren\Containers\Transactional\Tests\Unit\Utility\IdIssetValidationRule;
+use Smoren\Containers\Transactional\Tests\Unit\Utility\IdMappingValidationRule;
+use Smoren\Containers\Transactional\Tests\Unit\Utility\IntegerSortedLinkedList;
+use Smoren\Containers\Transactional\Tests\Unit\Utility\PositiveNumberValidationRule;
 
 class MainTest extends Unit
 {

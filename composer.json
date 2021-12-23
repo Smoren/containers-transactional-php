@@ -1,7 +1,7 @@
 {
-  "name": "smoren/structs-transactional",
-  "description": "Abstract transactional structures",
-  "keywords": ["abstract", "structures", "transaction", "collection"],
+  "name": "smoren/containers-transactional",
+  "description": "Abstract transactional containers and data structures",
+  "keywords": ["abstract", "containers", "structures", "transaction", "collection"],
   "license": "MIT",
   "authors": [
     {
@@ -12,8 +12,8 @@
   "require": {
     "php": ">=7.4",
     "ext-json": "*",
-    "smoren/extended-exceptions": "^1.0",
-    "smoren/structs": "^0.1"
+    "smoren/containers": "^0.1",
+    "smoren/extended-exceptions": "^1.0"
   },
   "require-dev": {
     "codeception/codeception": "^4.0",
@@ -21,8 +21,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Smoren\\StructsTransactional\\": "src",
-      "Smoren\\StructsTransactional\\Tests\\Unit\\": "tests/unit"
+      "Smoren\\Containers\\Transactional\\": "src",
+      "Smoren\\Containers\\Transactional\\Tests\\Unit\\": "tests/unit"
     }
   },
   "config": {

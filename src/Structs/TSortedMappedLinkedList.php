@@ -1,17 +1,17 @@
 <?php
 
-namespace Smoren\StructsTransactional\Structs;
+namespace Smoren\Containers\Transactional\Structs;
 
 
 use Exception;
-use Smoren\Structs\Structs\LinkedList;
-use Smoren\Structs\Structs\SortedMappedLinkedList;
-use Smoren\StructsTransactional\Base\TransactionWrapper;
+use Smoren\Containers\Structs\LinkedList;
+use Smoren\Containers\Structs\SortedMappedLinkedList;
+use Smoren\Containers\Transactional\Base\TransactionWrapper;
 
 /**
  * Class TSortedMappedLinkedList
  * Wraps SortedMappedLinkedList
- * @see \Smoren\Structs\Structs\SortedMappedLinkedList
+ * @see \Smoren\Containers\Structs\SortedMappedLinkedList
  */
 class TSortedMappedLinkedList extends TransactionWrapper
 {

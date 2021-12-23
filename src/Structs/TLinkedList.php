@@ -1,15 +1,15 @@
 <?php
 
-namespace Smoren\StructsTransactional\Structs;
+namespace Smoren\Containers\Transactional\Structs;
 
 
-use Smoren\Structs\Structs\LinkedList;
-use Smoren\StructsTransactional\Base\TransactionWrapper;
+use Smoren\Containers\Structs\LinkedList;
+use Smoren\Containers\Transactional\Base\TransactionWrapper;
 
 /**
  * Class TLinkedList
  * Wraps LinkedList
- * @see \Smoren\Structs\Structs\LinkedList
+ * @see \Smoren\Containers\Structs\LinkedList
  */
 class TLinkedList extends TransactionWrapper
 {

@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Smoren\StructsTransactional\Tests\Unit\Utility;
+namespace Smoren\Containers\Transactional\Tests\Unit\Utility;
 
 
-use Smoren\Structs\Structs\MappedCollection;
-use Smoren\StructsTransactional\Interfaces\ValidationRuleInterface;
+use Smoren\Containers\Structs\MappedCollection;
+use Smoren\Containers\Transactional\Interfaces\ValidationRuleInterface;
 
 /**
  * Class IdMappingValidationRule

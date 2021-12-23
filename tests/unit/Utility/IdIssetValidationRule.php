@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Smoren\StructsTransactional\Tests\Unit\Utility;
+namespace Smoren\Containers\Transactional\Tests\Unit\Utility;
 
 
-use Smoren\StructsTransactional\Interfaces\ValidationRuleInterface;
+use Smoren\Containers\Transactional\Interfaces\ValidationRuleInterface;
 
 /**
  * Class IdIssetValidationRule

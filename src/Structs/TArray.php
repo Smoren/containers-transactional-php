@@ -1,9 +1,9 @@
 <?php
 
-namespace Smoren\StructsTransactional\Structs;
+namespace Smoren\Containers\Transactional\Structs;
 
 
-use Smoren\StructsTransactional\Base\TransactionWrapper;
+use Smoren\Containers\Transactional\Base\TransactionWrapper;
 
 /**
  * Class TArray

@@ -1,16 +1,16 @@
 <?php
 
-namespace Smoren\StructsTransactional\Structs;
+namespace Smoren\Containers\Transactional\Structs;
 
 
-use Smoren\Structs\Structs\LinkedList;
-use Smoren\Structs\Structs\SortedLinkedList;
-use Smoren\StructsTransactional\Base\TransactionWrapper;
+use Smoren\Containers\Structs\LinkedList;
+use Smoren\Containers\Structs\SortedLinkedList;
+use Smoren\Containers\Transactional\Base\TransactionWrapper;
 
 /**
  * Class TSortedLinkedList
  * Wraps SortedLinkedList
- * @see \Smoren\Structs\Structs\SortedLinkedList
+ * @see \Smoren\Containers\Structs\SortedLinkedList
  */
 class TSortedLinkedList extends TransactionWrapper
 {

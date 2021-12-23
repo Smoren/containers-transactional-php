@@ -1,18 +1,18 @@
 <?php
 
-namespace Smoren\StructsTransactional\Structs;
+namespace Smoren\Containers\Transactional\Structs;
 
 
-use Smoren\Structs\exceptions\MappedCollectionException;
-use Smoren\Structs\exceptions\MappedLinkedListException;
-use Smoren\Structs\Structs\LinkedList;
-use Smoren\Structs\Structs\MappedLinkedList;
-use Smoren\StructsTransactional\Base\TransactionWrapper;
+use Smoren\Containers\exceptions\MappedCollectionException;
+use Smoren\Containers\exceptions\MappedLinkedListException;
+use Smoren\Containers\Structs\LinkedList;
+use Smoren\Containers\Structs\MappedLinkedList;
+use Smoren\Containers\Transactional\Base\TransactionWrapper;
 
 /**
  * Class TMappedLinkedList
  * Wraps MappedLinkedList
- * @see \Smoren\Structs\Structs\MappedLinkedList
+ * @see \Smoren\Containers\Structs\MappedLinkedList
  */
 class TMappedLinkedList extends TransactionWrapper
 {
