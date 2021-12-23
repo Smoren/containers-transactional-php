@@ -18,7 +18,7 @@ class TMappedLinkedList extends TransactionWrapper
 {
     /**
      * @inheritDoc
-     * @return LinkedList
+     * @return MappedLinkedList
      */
     public function getWrapped(): MappedLinkedList
     {

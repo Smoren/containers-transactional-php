@@ -17,11 +17,22 @@ class TSortedMappedLinkedList extends TransactionWrapper
 {
     /**
      * @inheritDoc
-     * @return LinkedList
+     * @return SortedMappedLinkedList
      */
     public function getWrapped(): SortedMappedLinkedList
     {
         return parent::getWrapped();
+    }
+
+    /**
+     * @return TransactionWrapper
+     * @throws Exception
+     */
+    public function commit(): TransactionWrapper
+    {
+        $result = parent::commit();
+        $this->getWrapped()->refresh();
+        return $result;
     }
 
     /**
