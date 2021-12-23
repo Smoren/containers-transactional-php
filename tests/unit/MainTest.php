@@ -297,11 +297,11 @@ class MainTest extends Unit
 
             $list->pushBack(6, -6);
             $list->pushBefore(6, 5, -5);
-            $list->pop(1);
+            $list->delete(1);
             $list->pushAfter(2, 3, -3);
             $list->popFront();
             $list->popBack();
-            $list->pop(10);
+            $list->delete(10);
 
             $this->assertCount(4, $list->toArray());
             $this->assertEquals([3, -2, 8, 5], array_keys($list->toArray()));
@@ -335,9 +335,9 @@ class MainTest extends Unit
         }
 
         $ll->interact(function(MappedLinkedList $list) {
-            $list->pop(3);
-            $list->pop(8);
-            $list->pop(5);
+            $list->delete(3);
+            $list->delete(8);
+            $list->delete(5);
             $list->pushFront(1, 1);
             $list->pushBack(5, 5);
 
@@ -444,7 +444,7 @@ class MainTest extends Unit
             $this->assertEquals([2, -1, -2, -8, -10], array_values($list->toArray()));
 
             $list->insert(6, -6);
-            $list->pop(1);
+            $list->delete(1);
             $list->popFront();
             $list->popBack();
 
