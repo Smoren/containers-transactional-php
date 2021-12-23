@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Smoren\StructsTransactional\tests\unit\utility;
+namespace Smoren\StructsTransactional\Tests\Unit\Utility;
 
 
-use Smoren\Structs\structs\MappedCollection;
-use Smoren\StructsTransactional\interfaces\ValidationRuleInterface;
+use Smoren\Structs\Structs\MappedCollection;
+use Smoren\StructsTransactional\Interfaces\ValidationRuleInterface;
 
 class PositiveNumberValidationRule implements ValidationRuleInterface
 {

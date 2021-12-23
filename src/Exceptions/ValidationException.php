@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Smoren\StructsTransactional\exceptions;
+namespace Smoren\StructsTransactional\Exceptions;
 
 
 use Smoren\ExtendedExceptions\BadDataException;

@@ -22,7 +22,7 @@
   "autoload": {
     "psr-4": {
       "Smoren\\StructsTransactional\\": "src",
-      "Smoren\\StructsTransactional\\tests\\": "tests"
+      "Smoren\\StructsTransactional\\Tests\\Unit\\": "tests/unit"
     }
   },
   "config": {

@@ -1,15 +1,15 @@
 <?php
 
-namespace Smoren\StructsTransactional\structs;
+namespace Smoren\StructsTransactional\Structs;
 
 
-use Smoren\Structs\structs\MappedCollection;
-use Smoren\StructsTransactional\base\TransactionWrapper;
+use Smoren\Structs\Structs\MappedCollection;
+use Smoren\StructsTransactional\Base\TransactionWrapper;
 
 /**
  * Class TMappedCollection
  * Wraps MappedCollection
- * @see \Smoren\Structs\structs\MappedCollection
+ * @see \Smoren\Structs\Structs\MappedCollection
  */
 class TMappedCollection extends TransactionWrapper
 {

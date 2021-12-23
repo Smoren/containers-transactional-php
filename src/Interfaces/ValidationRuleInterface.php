@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Smoren\StructsTransactional\interfaces;
+namespace Smoren\StructsTransactional\Interfaces;
 
 /**
  * Interface ValidationRuleInterface
