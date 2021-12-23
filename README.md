@@ -84,7 +84,7 @@ class TYourClass extends TransactionWrapper
 
 /**
  * This declaration is not necessary if you are not going to use validation
- * @see Smoren\StructsTransactional\tests\unit\Utility\PositiveNumberValidationRule
+ * @see Smoren\StructsTransactional\Tests\Unit\Utility\PositiveNumberValidationRule
  */
 class MyValidationRule implements ValidationRuleInterface
 {
