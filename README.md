@@ -1,12 +1,12 @@
-# Transactional data structures
+# Transactional containers and data structures
 
 Abstract wrapper structure for providing transactional interface for editing objects.
 
-Includes implementations of transactional wrappers for some data structures.
+Includes implementations of transactional wrappers for some data containers and structures.
 
 ### How to install as dependency to your project
 ```
-composer require smoren/structs-transactional
+composer require smoren/containers-transactional
 ```
 
 ### Unit testing
