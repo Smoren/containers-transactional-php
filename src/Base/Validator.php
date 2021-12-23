@@ -16,7 +16,7 @@ class Validator
     /**
      * @var string[] rules classnames list
      */
-    protected array $rules;
+    protected array $rules = [];
 
     /**
      * Validates object by rules
