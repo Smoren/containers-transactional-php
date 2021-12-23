@@ -6,8 +6,9 @@ namespace Smoren\Containers\Transactional\Base;
 
 use Smoren\Containers\Transactional\Exceptions\ValidationException;
 use Smoren\Containers\Transactional\Exceptions\WrapperException;
+use Smoren\Containers\Transactional\Interfaces\RecursiveTransactional;
 use Smoren\Containers\Transactional\Interfaces\Restorable;
-use Smoren\ExtendedExceptions\LogicException;
+use Traversable;
 
 /**
  * Class TransactionWrapper
@@ -81,34 +82,26 @@ class TransactionWrapper
     {
         $this->start();
 
-        $subErrors = [];
-        $this->callRecursive(function(TransactionWrapper $wrapper, string $attrName, $id = null) use (&$subErrors) {
-            try {
-                $wrapper->validate();
-            } catch(ValidationException $e) {
-                if($id === null) {
-                    $subErrors[$attrName] = $e->getErrors();
-                }
-
-                if(!isset($subErrors[$attrName])) {
-                    $subErrors[$attrName] = [];
-                }
-
-                $subErrors[$attrName][$id] = $e->getErrors();
-            }
+        $subErrors = $this->callRecursive(function(TransactionWrapper $wrapper) use (&$subErrors) {
+            $wrapper->validate();
         });
 
-        if($this->validator === null) {
-            return $this;
-        }
-
         try {
-            $this->validator->validate($this->temporary, $this);
+            if($this->validator !== null) {
+                $this->validator->validate($this->temporary, $this);
+            }
         } catch(ValidationException $e) {
             if(count($subErrors)) {
                 $e->addError('recursive', $subErrors);
             }
             throw $e;
+        }
+
+        if(count($subErrors)) {
+            throw new ValidationException(
+                'validation failed', ValidationException::STATUS_VALIDATION_FAILED, null,
+                ['recursive' => $subErrors]
+            );
         }
 
         return $this;
@@ -257,45 +250,43 @@ class TransactionWrapper
     }
 
     /**
-     * Returns names of transactional properties
-     * @return string[]
-     */
-    protected function getTransactionalAttributes(): array
-    {
-        return [];
-    }
-
-    /**
-     * Returns names of transactional properties collections
-     * @return string[]
-     */
-    protected function getTransactionalCollectionAttributes(): array
-    {
-        return [];
-    }
-
-    /**
      * Makes recursive calls to transactional children
      * @param callable $callback actions to call
-     * @return $this
+     * @return array errors
      */
-    protected function callRecursive(callable $callback): self
+    protected function callRecursive(callable $callback): array
     {
-        foreach($this->getTransactionalAttributes() as $attrName) {
-            $callback($this->{$attrName}, $attrName);
-        }
+        $errors = [];
 
-        foreach($this->getTransactionalCollectionAttributes() as $attrName) {
+        if($this->wrapped instanceof RecursiveTransactional) {
+            foreach($this->wrapped->getTransactionalFields() as $propName => $propValue) {
+                try {
+                    $callback($propValue);
+                } catch(ValidationException $e) {
+                    $errors[$propName] = $e->getErrors();
+                }
+            }
+        } elseif($this->wrapped instanceof Traversable) {
             $i = 0;
-            foreach($this->{$attrName} as $id => $item) {
+            foreach($this->wrapped as $id => $propValue) {
+                if(!($propValue instanceof TransactionWrapper)) {
+                    continue;
+                }
+
                 if(is_object($id) || is_array($id)) {
                     $id = $i;
                 }
-                $callback($item, $attrName, $id);
+
+                try {
+                    $callback($propValue);
+                } catch(ValidationException $e) {
+                    $errors[$id] = $e->getErrors();
+                }
+
                 ++$i;
             }
         }
 
-        return $this;
+        return $errors;
     }
 }
