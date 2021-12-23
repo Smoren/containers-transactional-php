@@ -21,4 +21,16 @@ class ValidationException extends BadDataException
     {
         return $this->data;
     }
+
+    /**
+     * Adds error by key
+     * @param string $key key
+     * @param mixed $errorData data of error
+     * @return self
+     */
+    public function addError(string $key, $errorData): self
+    {
+        $this->data[$key] = $errorData;
+        return $this;
+    }
 }

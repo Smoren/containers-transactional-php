@@ -7,6 +7,7 @@ namespace Smoren\Containers\Transactional\Base;
 use Smoren\Containers\Transactional\Exceptions\ValidationException;
 use Smoren\Containers\Transactional\Exceptions\WrapperException;
 use Smoren\Containers\Transactional\Interfaces\Restorable;
+use Smoren\ExtendedExceptions\LogicException;
 
 /**
  * Class TransactionWrapper
@@ -78,12 +79,37 @@ class TransactionWrapper
      */
     public function validate(): self
     {
+        $this->start();
+
+        $subErrors = [];
+        $this->callRecursive(function(TransactionWrapper $wrapper, string $attrName, $id = null) use (&$subErrors) {
+            try {
+                $wrapper->validate();
+            } catch(ValidationException $e) {
+                if($id === null) {
+                    $subErrors[$attrName] = $e->getErrors();
+                }
+
+                if(!isset($subErrors[$attrName])) {
+                    $subErrors[$attrName] = [];
+                }
+
+                $subErrors[$attrName][$id] = $e->getErrors();
+            }
+        });
+
         if($this->validator === null) {
             return $this;
         }
 
-        $this->start();
-        $this->validator->validate($this->temporary, $this);
+        try {
+            $this->validator->validate($this->temporary, $this);
+        } catch(ValidationException $e) {
+            if(count($subErrors)) {
+                $e->addError('recursive', $subErrors);
+            }
+            throw $e;
+        }
 
         return $this;
     }
@@ -95,6 +121,10 @@ class TransactionWrapper
     public function commit(): self
     {
         $this->start();
+
+        $this->callRecursive(function(TransactionWrapper $wrapper) {
+            $wrapper->commit();
+        });
 
         if($this->wrapped instanceof Restorable) {
             $this->wrapped->restoreState($this->temporary);
@@ -112,6 +142,11 @@ class TransactionWrapper
     public function rollback(): self
     {
         $this->start();
+
+        $this->callRecursive(function(TransactionWrapper $wrapper) {
+            $wrapper->rollback();
+        });
+
         $this->temporary = null;
         return $this;
     }
@@ -216,6 +251,49 @@ class TransactionWrapper
                 "expected wrapped type {$type}, given {$objectType}",
                 WrapperException::STATUS_BAD_WRAPPED_TYPE
             );
+        }
+
+        return $this;
+    }
+
+    /**
+     * Returns names of transactional properties
+     * @return string[]
+     */
+    protected function getTransactionalAttributes(): array
+    {
+        return [];
+    }
+
+    /**
+     * Returns names of transactional properties collections
+     * @return string[]
+     */
+    protected function getTransactionalCollectionAttributes(): array
+    {
+        return [];
+    }
+
+    /**
+     * Makes recursive calls to transactional children
+     * @param callable $callback actions to call
+     * @return $this
+     */
+    protected function callRecursive(callable $callback): self
+    {
+        foreach($this->getTransactionalAttributes() as $attrName) {
+            $callback($this->{$attrName}, $attrName);
+        }
+
+        foreach($this->getTransactionalCollectionAttributes() as $attrName) {
+            $i = 0;
+            foreach($this->{$attrName} as $id => $item) {
+                if(is_object($id) || is_array($id)) {
+                    $id = $i;
+                }
+                $callback($item, $attrName, $id);
+                ++$i;
+            }
         }
 
         return $this;
