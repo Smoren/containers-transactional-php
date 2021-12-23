@@ -170,9 +170,39 @@ try {
 }
 ```
 
+#### TLinkedList
+
+Classic implementation of linked list data structure wrapped with transactional interface.
+
+Wraps [LinkedList](https://github.com/Smoren/structs-php#linkedlist) container.
+
+```php
+use Smoren\StructsTransactional\Structs\TLinkedList;
+use Smoren\StructsTransactional\Exceptions\ValidationException;
+use Smoren\Structs\Structs\LinkedList;
+
+$tll = new TLinkedList([1, 2, 3]);
+print_r($tll->getWrapped()->toArray()); // output: [1, 2, 3]
+
+$tll->interact(function(LinkedList $list) {
+    $list->pushBack(4);
+    $list->pushBack(5);
+});
+
+try {
+    print_r($tll->getWrapped()->toArray()); // output: [1, 2, 3]
+    $tll->apply();
+    print_r($tll->getWrapped()->toArray()); // output: [1, 2, 3, 4, 5]
+} catch(ValidationException $e) {
+    // if validation failed
+}
+```
+
 #### TMappedCollection
 
 Map-like data structure with transactional interface.
+
+Wraps [MappedCollection](https://github.com/Smoren/structs-php#mappedcollection) container.
 
 ```php
 use Smoren\StructsTransactional\Structs\TMappedCollection;
@@ -201,35 +231,11 @@ try {
 }
 ```
 
-#### TLinkedList
-
-Classic implementation of linked list data structure wrapped with transactional interface.
-
-```php
-use Smoren\StructsTransactional\Structs\TLinkedList;
-use Smoren\StructsTransactional\Exceptions\ValidationException;
-use Smoren\Structs\Structs\LinkedList;
-
-$tll = new TLinkedList([1, 2, 3]);
-print_r($tll->getWrapped()->toArray()); // output: [1, 2, 3]
-
-$tll->interact(function(LinkedList $list) {
-    $list->pushBack(4);
-    $list->pushBack(5);
-});
-
-try {
-    print_r($tll->getWrapped()->toArray()); // output: [1, 2, 3]
-    $tll->apply();
-    print_r($tll->getWrapped()->toArray()); // output: [1, 2, 3, 4, 5]
-} catch(ValidationException $e) {
-    // if validation failed
-}
-```
-
 #### TMappedLinkedList
 
 LinkedList with mapping by id and with transactional interface.
+
+Wraps [MappedLinkedList](https://github.com/Smoren/structs-php#mappedlinkedlist) container.
 
 ```php
 use Smoren\StructsTransactional\Structs\TMappedLinkedList;
@@ -259,6 +265,8 @@ try {
 #### TSortedLinkedList
 
 LinkedList with presort and transactional interface.
+
+Wraps [SortedLinkedList](https://github.com/Smoren/structs-php#sortedlinkedlist) container.
 
 ```php
 use Smoren\StructsTransactional\Structs\TSortedLinkedList;
@@ -304,6 +312,8 @@ try {
 #### TSortedMappedLinkedList
 
 LinkedList with presort, mapping and transactional interface.
+
+Wraps [SortedMappedLinkedList](https://github.com/Smoren/structs-php#sortedmappedlinkedlist) container.
 
 ```php
 use Smoren\StructsTransactional\Structs\TSortedMappedLinkedList;
