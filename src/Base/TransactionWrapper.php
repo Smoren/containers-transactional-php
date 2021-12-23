@@ -269,10 +269,31 @@ class TransactionWrapper
 
         if($this->temporary instanceof RecursiveTransactional) {
             foreach($this->temporary->getTransactionalFields() as $propName => $propValue) {
-                try {
-                    $callback($propValue);
-                } catch(ValidationException $e) {
-                    $errors[$propName] = $e->getErrors();
+                if($propValue instanceof TransactionWrapper) {
+                    try {
+                        $callback($propValue);
+                    } catch(ValidationException $e) {
+                        $errors[$propName] = $e->getErrors();
+                    }
+                } else {
+                    $i = 0;
+                    foreach($propValue as $id => $propValueItem) {
+                        if(is_object($id) || is_array($id)) {
+                            $id = $i;
+                        }
+
+                        try {
+                            $callback($propValueItem);
+                        } catch(ValidationException $e) {
+                            if(!isset($errors[$propName])) {
+                                $errors[$propName] = [];
+                            }
+
+                            $errors[$propName][$id] = $e->getErrors();
+                        }
+
+                        ++$i;
+                    }
                 }
             }
         } elseif($this->temporary instanceof Traversable) {
