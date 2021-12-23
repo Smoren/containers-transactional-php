@@ -21,17 +21,18 @@ class Validator
     /**
      * Validates object by rules
      * @param mixed $data object to validate
+     * @param mixed $owner owner of validating data
      * @return $this
      * @throws ValidationException
      */
-    public function validate($data): self
+    public function validate($data, $owner = null): self
     {
         $errors = [];
 
         foreach($this->rules as $id => $ruleClass) {
             /** @var ValidationRuleInterface $rule */
             $rule = new $ruleClass();
-            if(!$rule->validate($data)) {
+            if(!$rule->validate($data, $owner)) {
                 $errors[$id] = $rule->getErrors();
             }
         }

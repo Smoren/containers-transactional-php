@@ -82,7 +82,7 @@ class TransactionWrapper
         }
 
         $this->start();
-        $this->validator->validate($this->temporary);
+        $this->validator->validate($this->temporary, $this);
 
         return $this;
     }

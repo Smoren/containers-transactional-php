@@ -93,7 +93,7 @@ class MyValidationRule implements ValidationRuleInterface
     /**
      * @inheritDoc
      */
-    public function validate($data): bool
+    public function validate($data, $owner): bool
     {
         // ...
         return true;
