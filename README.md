@@ -118,7 +118,7 @@ $yourObject = new YourClass();
 $tWrapper = new TYourClass($yourObject);
 
 echo $yourObject->someAttribute; // output: 1
-echo $tWrapper->getWrapped()->someAttribute; output: 1
+echo $tWrapper->getWrapped()->someAttribute; // output: 1
 
 $tWrapper->interact(function(YourClass $tmpObjectState) {
     $tmpObjectState->someAttribute = 2;
@@ -154,7 +154,7 @@ use Smoren\StructsTransactional\Exceptions\ValidationException;
 $ta = new TArray([1, 2, 3]);
 print_r($ta->getWrapped()); // output: [1, 2, 3]
 
-$ta->interact(function(array &$arr) use ($ta) {
+$ta->interact(function(array &$arr) {
     array_push($arr, 4);
     array_push($arr, 5);
     $arr[0] = 0;
@@ -316,7 +316,7 @@ $tsmll = new TSortedMappedLinkedList(
 
 print_r($tsmll->getWrapped()->toArray()); // output: [1 => -1, 2 => -2, 4 => -4]
 
-$tsmll->interact(function(SortedMappedLinkedList $list) use ($ll) {
+$tsmll->interact(function(SortedMappedLinkedList $list) {
     $list->insert(3, 0);
 });
 
