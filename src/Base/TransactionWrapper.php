@@ -159,6 +159,7 @@ class TransactionWrapper
      */
     public function getTemporary()
     {
+        $this->start();
         return $this->temporary;
     }
 
