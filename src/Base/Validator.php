@@ -17,6 +17,10 @@ class Validator
      * @var string[] rules classnames list
      */
     protected array $rules = [];
+    /**
+     * @var array rules validation params
+     */
+    protected array $params = [];
 
     /**
      * Validates object by rules
@@ -32,7 +36,7 @@ class Validator
         foreach($this->rules as $id => $ruleClass) {
             /** @var ValidationRuleInterface $rule */
             $rule = new $ruleClass();
-            if(!$rule->validate($data, $owner)) {
+            if(!$rule->validate($data, $this->params[$id] ?? null, $owner)) {
                 $errors[$id] = $rule->getErrors();
             }
         }
@@ -53,12 +57,13 @@ class Validator
      * @return $this
      * @throws LogicException
      */
-    public function addRule(string $id, string $rule): self
+    public function addRule(string $id, string $rule, $params = null): self
     {
         if(!is_subclass_of($rule, ValidationRuleInterface::class)) {
             throw new LogicException("{$rule} is not an instance of ".ValidationRuleInterface::class, 1);
         }
         $this->rules[$id] = $rule;
+        $this->params[$id] = $params;
         return $this;
     }
 }

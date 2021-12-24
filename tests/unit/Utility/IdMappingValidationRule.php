@@ -5,6 +5,7 @@ namespace Smoren\Containers\Transactional\Tests\Unit\Utility;
 
 
 use Smoren\Containers\Structs\MappedCollection;
+use Smoren\Containers\Transactional\Base\Validator;
 use Smoren\Containers\Transactional\Interfaces\ValidationRuleInterface;
 
 /**
@@ -24,7 +25,7 @@ class IdMappingValidationRule implements ValidationRuleInterface
      * @inheritDoc
      * @param MappedCollection $data
      */
-    public function validate($data, $owner): bool
+    public function validate($data, $params = null, $owner = null): bool
     {
         $errorCount = 0;
         foreach($data as $id => $item) {

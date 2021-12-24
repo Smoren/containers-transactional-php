@@ -21,7 +21,7 @@ class IdIssetValidationRule implements ValidationRuleInterface
     /**
      * @inheritDoc
      */
-    public function validate($data, $owner): bool
+    public function validate($data, $params = null, $owner = null): bool
     {
         $errorCount = 0;
         foreach($data as $id => $item) {
