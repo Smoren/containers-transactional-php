@@ -154,6 +154,15 @@ class TransactionWrapper
     }
 
     /**
+     * Returns temporary state
+     * @return mixed|null
+     */
+    public function getTemporary()
+    {
+        return $this->temporary;
+    }
+
+    /**
      * Sets validator object
      * @param Validator $validator validator object
      * @return $this
